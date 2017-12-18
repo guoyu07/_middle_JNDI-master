@@ -43,6 +43,15 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+
+        <!--It's need for remoteJNDI.Client class-->
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-ejb-client-bom</artifactId>
+            <version>8.0.0.Final</version>
+            <type>pom</type>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
