@@ -1,7 +1,5 @@
 package plainJNDI;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,7 +14,7 @@ public class Utility {
 
     static {
         try {
-            Context context = new InitialContext();
+            Context context = (Context) new InitialContext().lookup("java:comp/env");
             DS = (DataSource) context.lookup("jdbs/DBconnect");
         } catch (NamingException e) {
             e.printStackTrace();

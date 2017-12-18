@@ -1,7 +1,5 @@
 package plainJNDI;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
