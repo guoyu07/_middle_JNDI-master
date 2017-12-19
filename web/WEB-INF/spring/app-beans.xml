@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-    <context:component-scan base-package="springJNDI_datasource"/>
+    <context:component-scan base-package="springJNDI_datasource, LDAP"/>
     <context:annotation-config />
 
     <!--First way-->
@@ -42,5 +42,18 @@
         <property name="service" ref="remBean"/>
     </bean>
 
+    <!--TODO LDAP-->
+    <!--like datasource for data base-->
+    <bean id="contextSource"
+          class="org.springframework.ldap.core.support.LdapContextSource">
+        <property name="url" value="ldap://your.ldap.url:389" />
+        <property name="base" value="base, be careful to put it right" />
+        <property name="userDn" value="root" />
+        <property name="password" value="root" />
+    </bean>
+    <!--like entityManager in jpa-->
+    <bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+        <property name="contextSource" ref="contextSource"/>
+    </bean>
 
 </beans>
