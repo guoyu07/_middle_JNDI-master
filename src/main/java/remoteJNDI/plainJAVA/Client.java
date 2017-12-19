@@ -1,4 +1,4 @@
-package remoteJNDI;
+package remoteJNDI.plainJAVA;
 
 import ejbJNDI.RemoteBean;
 import ejbJNDI.RemoteBeanImpl;

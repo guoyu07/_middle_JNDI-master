@@ -61,7 +61,7 @@
             <version>1</version>
         </dependency>
 
-        <!--It's need for remoteJNDI.Client class-->
+        <!--It's need remoteJNDI.plainJAVA.Clientient class-->
         <dependency>
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-ejb-client-bom</artifactId>

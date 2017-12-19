@@ -23,17 +23,22 @@
         <property name="jndiName" value="jdbs/DBconnect" />
         <property name="expectedType" value="javax.sql.DataSource" />
     </bean>
-    <bean id="remoteBean" class="org.springframework.remoting.rmi.JndiRmiProxyFactoryBean">
+    <bean id="remoteBean" class="org.springframework.remoting.rmi.JndiRmiProxyFactoryBean" >
         <property name="jndiName" value="springJndiRemoteBean"/>
         <property name="expectedType" value="ejbJNDI.RemoteBean"/>
+        <property name="jndiEnvironment">
+            <props>
+                <prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory</prop>
+                <prop key="java.naming.provider.url">remote://localhost:1999</prop>
+            </props>
+        </property>
     </bean>
 
-
     <!--TODO Server side-->
-    <bean id="remBean" class="ejbJNDI.RemoteBeanImpl"/>
-    <bean id="jndiExporter" class="org.springframework.remoting.rmi.JndiRmiServiceExporter">
+    <bean id="remBean" class="remoteJNDI.springRMI_JNDI.SpringBeanImpl"/>
+    <bean class="org.springframework.remoting.rmi.JndiRmiServiceExporter">
         <property name="jndiName" value="springJndiRemoteBean"/>
-        <property name="serviceInterface" value="ejbJNDI.RemoteBean"/>
+        <property name="serviceInterface" value="remoteJNDI.springRMI_JNDI.SpringBean"/>
         <property name="service" ref="remBean"/>
     </bean>
 
