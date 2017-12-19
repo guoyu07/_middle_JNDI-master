@@ -1,5 +1,8 @@
 package remoteJNDI;
 
+import ejbJNDI.RemoteBean;
+import ejbJNDI.RemoteBeanImpl;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -26,7 +29,7 @@ public class Client {
         /**
          * we can get bean address from jboss admin panel or by our methods lookupRemoteBeanStateless(), lookupRemoteBeanStateful()
          */
-        printLookup("ejb:myapp/myejbjar/MyEjbName!com.test.MyRemoteInterface");
+        printLookup(lookupRemoteBeanStateful());
     }
 
     public static void printLookup(String name) throws NamingException {

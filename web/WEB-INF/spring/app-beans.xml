@@ -18,9 +18,24 @@
     <!--<jee:jndi-lookup jndi-name="jdbs/DBconnect" expected-type="javax.sql.DataSource" id="jndiDS" />-->
 
     <!--Second way-->
+    <!--TODO Client side-->
     <bean id="jndiDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="jdbs/DBconnect" />
         <property name="expectedType" value="javax.sql.DataSource" />
     </bean>
+    <bean id="remoteBean" class="org.springframework.remoting.rmi.JndiRmiProxyFactoryBean">
+        <property name="jndiName" value="springJndiRemoteBean"/>
+        <property name="expectedType" value="ejbJNDI.RemoteBean"/>
+    </bean>
+
+
+    <!--TODO Server side-->
+    <bean id="remBean" class="ejbJNDI.RemoteBeanImpl"/>
+    <bean id="jndiExporter" class="org.springframework.remoting.rmi.JndiRmiServiceExporter">
+        <property name="jndiName" value="springJndiRemoteBean"/>
+        <property name="serviceInterface" value="ejbJNDI.RemoteBean"/>
+        <property name="service" ref="remBean"/>
+    </bean>
+
 
 </beans>
